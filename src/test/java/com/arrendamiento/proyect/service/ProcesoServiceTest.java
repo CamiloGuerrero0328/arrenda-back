@@ -64,4 +64,10 @@ public class ProcesoServiceTest {
     public void count() throws Exception {
         assertNotNull(procesoService);
     }
+    
+    @Test
+    @DisplayName("findByIdCliente")
+    public void findByIdCliente() throws Exception {
+        assertNotNull(procesoService);
+    }
 }

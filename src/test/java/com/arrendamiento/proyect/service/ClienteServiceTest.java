@@ -64,4 +64,16 @@ public class ClienteServiceTest {
     public void count() throws Exception {
         assertNotNull(clienteService);
     }
+    
+    @Test
+    @DisplayName("findByTipoCliente")
+    public void findByTipoCliente() throws Exception {
+        assertNotNull(clienteService);
+    }
+    
+    @Test
+    @DisplayName("findClientByIdUser")
+    public void findClientByIdUser() throws Exception {
+        assertNotNull(clienteService);
+    }
 }

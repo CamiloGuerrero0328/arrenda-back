@@ -41,23 +41,7 @@ public class UsuarioServiceTest {
     @Test
     @DisplayName("save")
     public void save() throws Exception {
-        assertNotNull(usuarioService);
-//        Usuario user = new Usuario();
-//		user.setIdUsuario(100);
-//		user.setCorreoElectronico("juann@hotmail.com");
-//		user.setContrasena("contrase");
-//		
-//		Optional<TipoUsuario> userTypeOptional = tipoUsuarioService.findById(2);
-//		assertTrue(userTypeOptional.isPresent(), "El tipo de usuario no existe");
-//		
-//		TipoUsuario userType = userTypeOptional.get();		
-//		user.setTipoUsuario(userType);
-//		
-//		try {
-//			usuarioService.save(user);
-//		} catch (Exception e) {
-//			assertNull(e,e.getMessage());
-//		}		
+        assertNotNull(usuarioService);		
     }
 
     @Test
@@ -87,6 +71,12 @@ public class UsuarioServiceTest {
     @Test
     @DisplayName("count")
     public void count() throws Exception {
+        assertNotNull(usuarioService);
+    }
+    
+    @Test
+    @DisplayName("findByEmail")
+    public void findByEmail() throws Exception {
         assertNotNull(usuarioService);
     }
 }

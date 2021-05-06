@@ -61,4 +61,10 @@ public class AbogadoServiceTest {
     public void count() throws Exception {
         assertNotNull(abogadoService);
     }
+    
+    @Test
+    @DisplayName("findAbogadoByIdUser")
+    public void findAbogadoByIdUser() throws Exception {
+        assertNotNull(abogadoService);
+    }
 }

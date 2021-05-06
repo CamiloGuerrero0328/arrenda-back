@@ -64,4 +64,22 @@ public class InmuebleServiceTest {
     public void count() throws Exception {
         assertNotNull(inmuebleService);
     }
+    
+    @Test
+    @DisplayName("findByIdInmueble")
+    public void findByIdInmueble() throws Exception {
+        assertNotNull(inmuebleService);
+    }
+    
+    @Test
+    @DisplayName("findByIdCliente")
+    public void findByIdCliente() throws Exception {
+        assertNotNull(inmuebleService);
+    }
+    
+    @Test
+    @DisplayName("findInmueblesAplicados")
+    public void findInmueblesAplicados() throws Exception {
+        assertNotNull(inmuebleService);
+    }
 }

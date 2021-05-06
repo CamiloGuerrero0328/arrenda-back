@@ -64,4 +64,10 @@ public class DocumentosServiceTest {
     public void count() throws Exception {
         assertNotNull(documentosService);
     }
+    
+    @Test
+    @DisplayName("findByIdCliente")
+    public void findByIdCliente() throws Exception {
+        assertNotNull(documentosService);
+    }
 }
