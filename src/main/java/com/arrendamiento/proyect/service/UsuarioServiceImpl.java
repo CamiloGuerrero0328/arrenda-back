@@ -88,7 +88,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 			throw new Exception("El usuario con id: "+entity.getIdUsuario()+" Ya existe");
         }   
 		
-		if (usuarioRepository.findByEmailId(entity.getCorreoElectronico()).isEmpty()==false) {
+		if (usuarioRepository.findByEmailId(entity.getCorreoElectronico()).isPresent()==true) {
 			throw new Exception("El usuario con email: "+entity.getCorreoElectronico()+" Ya existe");
 		}
 	
