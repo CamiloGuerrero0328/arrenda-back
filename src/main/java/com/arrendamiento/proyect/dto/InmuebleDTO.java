@@ -28,8 +28,17 @@ public class InmuebleDTO implements Serializable {
     private Integer idInmueble;
     private String tipoInmueble;
     private Integer idCliente;
+    private Long monto;
     
-    public String getImagen() {
+    public Long getMonto() {
+		return monto;
+	}
+
+	public void setMonto(Long monto) {
+		this.monto = monto;
+	}
+
+	public String getImagen() {
 		return imagen;
 	}
 

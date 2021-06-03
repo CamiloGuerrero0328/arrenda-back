@@ -84,9 +84,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 		validate(entity);	
 	
-		if(usuarioRepository.findById(entity.getIdUsuario()).isPresent()){
-           throw new ZMessManager(ZMessManager.ENTITY_WITHSAMEKEY);
-        }    
+		if(usuarioRepository.findById(entity.getIdUsuario()).isPresent()==true){
+			throw new Exception("El usuario con id: "+entity.getIdUsuario()+" Ya existe");
+        }   
+		
+		if (usuarioRepository.findByEmailId(entity.getCorreoElectronico()).isEmpty()==false) {
+			throw new Exception("El usuario con email: "+entity.getCorreoElectronico()+" Ya existe");
+		}
 	
 	    return usuarioRepository.save(entity);
 	    
@@ -182,6 +186,17 @@ public class UsuarioServiceImpl implements UsuarioService{
             	return usuarioRepository.findByEmail(correoElectronico);
 			}
 			
+			@Transactional(readOnly=true)
+            public Optional<Usuario> findByEmailId(String correoElectronico) throws Exception {  
+            	log.debug("getting Usuario instance");
+            	return usuarioRepository.findByEmailId(correoElectronico);
+			}
 			
+			@Override
+			@Transactional(readOnly=true)
+            public List<Usuario> findByTipoUsuario(int id) throws Exception {  
+            	log.debug("getting Usuario instance");
+            	 return usuarioRepository.findByTipoUsuario(id);
+			}
 			
 }

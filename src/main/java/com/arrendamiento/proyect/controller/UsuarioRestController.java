@@ -5,6 +5,8 @@ import com.arrendamiento.proyect.dto.UsuarioDTO;
 import com.arrendamiento.proyect.mapper.UsuarioMapper;
 import com.arrendamiento.proyect.service.UsuarioService;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,6 +65,25 @@ public class UsuarioRestController {
 
             return ResponseEntity.ok()
                                  .body(usuarioMapper.usuarioToUsuarioDTO(
+                    usuario));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    
+    @GetMapping(value = "/findByTipoUsuario/{id}")
+    public ResponseEntity<?> findByTipoUsuario(
+        @PathVariable("id")
+        int id) {
+        log.debug("Request to findByTipoUsuario() Usuario");
+
+        try {
+            List<Usuario> usuario = usuarioService.findByTipoUsuario(id);
+
+            return ResponseEntity.ok()
+                                 .body(usuarioMapper.listUsuarioToListUsuarioDTO(
                     usuario));
         } catch (Exception e) {
             log.error(e.getMessage(), e);

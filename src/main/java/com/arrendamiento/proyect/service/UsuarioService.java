@@ -16,4 +16,8 @@ public interface UsuarioService extends GenericService<Usuario, Integer> {
 	
 	public Usuario findByEmail(String correoElectronico) throws Exception;
 	
+	public List<Usuario> findByTipoUsuario(int id) throws Exception;
+	
+	public Optional<Usuario> findByEmailId(String correoElectronico) throws Exception;
+	
 }

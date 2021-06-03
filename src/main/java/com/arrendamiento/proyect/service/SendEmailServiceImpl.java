@@ -47,7 +47,7 @@ public class SendEmailServiceImpl {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
 		String mensaje = "Han aplicado a tu inmueble con ID: "
-				+ proceso.getInmueble().getIdInmueble() + ", Y el cliente es: " + 
+				+ proceso.getInmueble().getTipoInmueble() + ", " + proceso.getInmueble().getDireccion() + proceso.getInmueble().getDescripcion() + ", Y el cliente es: " + 
 				proceso.getCliente().getNombreCliente();
 
 		simpleMailMessage.setTo(receptor);

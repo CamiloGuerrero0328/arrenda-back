@@ -36,6 +36,7 @@ public class Transaction implements java.io.Serializable {
     @NotNull
     @Column(name = "monto", nullable = false)
     private Double monto;
+    private String referencia;	
 	public Long getIdTransaction() {
 		return idTransaction;
 	}
@@ -59,6 +60,12 @@ public class Transaction implements java.io.Serializable {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getReferencia() {
+		return referencia;
+	}
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
 	}
 	public Date getFecha() {
 		return fecha;

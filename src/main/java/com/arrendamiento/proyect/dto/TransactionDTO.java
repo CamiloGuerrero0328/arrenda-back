@@ -23,6 +23,7 @@ public class TransactionDTO implements Serializable {
     private Long idTransaction;
     @NotNull
     private Double monto;
+    private String referencia;
     private Long idCliente_Cliente;
     private Long idInmueble_Inmueble;
 	public String getDescripcion() {
@@ -30,6 +31,12 @@ public class TransactionDTO implements Serializable {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getReferencia() {
+		return referencia;
+	}
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
 	}
 	public Date getFecha() {
 		return fecha;

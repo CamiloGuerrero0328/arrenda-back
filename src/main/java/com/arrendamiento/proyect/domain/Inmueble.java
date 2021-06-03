@@ -2,6 +2,8 @@ package com.arrendamiento.proyect.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 
@@ -17,12 +19,14 @@ public class Inmueble implements Serializable {
 	@Id
 	@Column(name="id_inmueble")
 	private Integer idInmueble;
-
+	@NotNull
 	private String descripcion;
-
+	@NotNull
 	private String direccion;
-	
+	@NotNull
 	private String imagen;
+	@NotNull
+	private Long monto;
 
 	@Column(name="tipo_inmueble")
 	private String tipoInmueble;
@@ -49,6 +53,14 @@ public class Inmueble implements Serializable {
 
 	public void setIdInmueble(Integer idInmueble) {
 		this.idInmueble = idInmueble;
+	}
+
+	public Long getMonto() {
+		return this.monto;
+	}
+
+	public void setMonto(Long monto) {
+		this.monto = monto;
 	}
 
 	public String getDescripcion() {

@@ -21,10 +21,15 @@ public class Abogado implements java.io.Serializable {
     private Integer idAbogado;
     @NotNull
     private Usuario usuario;
+    @NotNull
     private String apellidoAbogado;
+    @NotNull
     private String correoElectronico;
+    @NotNull
     private String estado;
+    @NotNull
     private String nombreAbogado;
+    @NotNull
     private Long telefonoAbogado;
     private List<Proceso> procesos = new ArrayList<Proceso>(0);
 

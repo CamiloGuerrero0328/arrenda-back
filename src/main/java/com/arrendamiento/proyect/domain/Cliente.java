@@ -25,9 +25,13 @@ public class Cliente implements java.io.Serializable {
     private TipoDocumento tipoDocumento;
     @NotNull
     private Usuario usuario;
+    @NotNull
     private String apellidoCliente;
+    @NotNull
     private String documento;
+    @NotNull
     private String nombreCliente;
+    @NotNull
     private Long telefonoCliente;
     private List<Documentos> documentoses = new ArrayList<Documentos>(0);
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>(0);

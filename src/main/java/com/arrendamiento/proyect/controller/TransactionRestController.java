@@ -23,90 +23,72 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-
 /**
-* @author Zathura Code Generator Version 9.0 http://zathuracode.org
-* www.zathuracode.org
-*
-*/
+ * @author Zathura Code Generator Version 9.0 http://zathuracode.org
+ *         www.zathuracode.org
+ *
+ */
 @RestController
 @RequestMapping("/api/transaction")
 @CrossOrigin(origins = "*")
 public class TransactionRestController {
 	private static final Logger log = LoggerFactory.getLogger(TransactionRestController.class);
-    @Autowired
-    private TransactionService transactionService;
-    @Autowired
-    private TransactionMapper transactionMapper;
+	@Autowired
+	private TransactionService transactionService;
+	@Autowired
+	private TransactionMapper transactionMapper;
 
-    @GetMapping(value = "/findById/{idTransaction}")
-    public ResponseEntity<?> findById(
-        @PathVariable("idTransaction")
-    Long idTransaction) throws Exception {
-        log.debug("Request to findById() Transaction");
+	@GetMapping(value = "/findById/{idTransaction}")
+	public ResponseEntity<?> findById(@PathVariable("idTransaction") Long idTransaction) throws Exception {
+		log.debug("Request to findById() Transaction");
 
-        Transaction transaction = (transactionService.findById(idTransaction)
-                                                     .isPresent() == true)
-            ? transactionService.findById(idTransaction).get() : null;
+		Transaction transaction = (transactionService.findById(idTransaction).isPresent() == true)
+				? transactionService.findById(idTransaction).get()
+				: null;
 
-        return ResponseEntity.ok()
-                             .body(transactionMapper.transactionToTransactionDTO(
-                transaction));
-    }
+		return ResponseEntity.ok().body(transactionMapper.transactionToTransactionDTO(transaction));
+	}
 
-    @GetMapping(value = "/findAll")
-    public ResponseEntity<?> findAll() throws Exception {
-        log.debug("Request to findAll() Transaction");
+	@GetMapping(value = "/findAll")
+	public ResponseEntity<?> findAll() throws Exception {
+		log.debug("Request to findAll() Transaction");
 
-        return ResponseEntity.ok()
-                             .body(transactionMapper.listTransactionToListTransactionDTO(
-                transactionService.findAll()));
-    }
+		return ResponseEntity.ok()
+				.body(transactionMapper.listTransactionToListTransactionDTO(transactionService.findAll()));
+	}
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<?> save(
-        @Valid
-    @RequestBody
-    TransactionDTO transactionDTO) throws Exception {
-        log.debug("Request to save Transaction: {}", transactionDTO);
+	@PostMapping(value = "/save")
+	public ResponseEntity<?> save(@Valid @RequestBody TransactionDTO transactionDTO) throws Exception {
+		log.debug("Request to save Transaction: {}", transactionDTO);
+		System.out.print(transactionDTO.getReferencia());
+		System.out.print(transactionDTO.getDescripcion());
+		Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
+		transaction = transactionService.save(transaction);
 
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
-        transaction = transactionService.save(transaction);
+		return ResponseEntity.ok().body(transactionMapper.transactionToTransactionDTO(transaction));
+	}
 
-        return ResponseEntity.ok()
-                             .body(transactionMapper.transactionToTransactionDTO(
-                transaction));
-    }
+	@PutMapping(value = "/update")
+	public ResponseEntity<?> update(@Valid @RequestBody TransactionDTO transactionDTO) throws Exception {
+		log.debug("Request to update Transaction: {}", transactionDTO);
 
-    @PutMapping(value = "/update")
-    public ResponseEntity<?> update(
-        @Valid
-    @RequestBody
-    TransactionDTO transactionDTO) throws Exception {
-        log.debug("Request to update Transaction: {}", transactionDTO);
+		Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
+		transaction = transactionService.update(transaction);
 
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
-        transaction = transactionService.update(transaction);
+		return ResponseEntity.ok().body(transactionMapper.transactionToTransactionDTO(transaction));
+	}
 
-        return ResponseEntity.ok()
-                             .body(transactionMapper.transactionToTransactionDTO(
-                transaction));
-    }
+	@DeleteMapping(value = "/delete/{idTransaction}")
+	public ResponseEntity<?> delete(@PathVariable("idTransaction") Long idTransaction) throws Exception {
+		log.debug("Request to delete Transaction");
 
-    @DeleteMapping(value = "/delete/{idTransaction}")
-    public ResponseEntity<?> delete(
-        @PathVariable("idTransaction")
-    Long idTransaction) throws Exception {
-        log.debug("Request to delete Transaction");
+		transactionService.deleteById(idTransaction);
 
-        transactionService.deleteById(idTransaction);
+		return ResponseEntity.ok().build();
+	}
 
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping(value = "/count")
-    public ResponseEntity<?> count() {
-        return ResponseEntity.ok().body(transactionService.count());
-    }
+	@GetMapping(value = "/count")
+	public ResponseEntity<?> count() {
+		return ResponseEntity.ok().body(transactionService.count());
+	}
 }
-

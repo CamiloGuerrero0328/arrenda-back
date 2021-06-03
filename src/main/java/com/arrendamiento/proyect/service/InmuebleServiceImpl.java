@@ -96,9 +96,7 @@ public class InmuebleServiceImpl implements InmuebleService {
                 throw new ZMessManager(ZMessManager.ENTITY_WITHSAMEKEY);
             }
             
-//            inmuebleRepository.save(entity);
-             Inmueble inmueble = inmuebleRepository.save(entity);
-//            Inmueble inmueble = inmuebleRepository.findById(entity.getIdInmueble()).get();
+            Inmueble inmueble = inmuebleRepository.save(entity);
             correo = inmueble.getCliente().getUsuario().getCorreoElectronico();
             System.out.println(inmueble.getIdInmueble()+"+++++++++++++++++++++++++++++++++++++");
             System.out.println(correo+"+++++++++++++++++++++++++++++++++++++");
