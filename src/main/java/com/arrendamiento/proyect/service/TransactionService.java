@@ -1,6 +1,7 @@
 package com.arrendamiento.proyect.service;
 
 import com.arrendamiento.proyect.domain.Transaction;
+import com.arrendamiento.proyect.domain.Usuario;
 
 import java.math.*;
 
@@ -13,4 +14,6 @@ import java.util.*;
 *
 */
 public interface TransactionService extends GenericService<Transaction, Long> {
+	
+	public List<Transaction> findByIdInmueble(Integer id) throws Exception;
 }

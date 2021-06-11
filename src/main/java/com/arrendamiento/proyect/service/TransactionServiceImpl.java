@@ -145,4 +145,10 @@ public class TransactionServiceImpl implements TransactionService {
 
         return transactionRepository.findById(idTransaction);
     }
+    
+    @Transactional(readOnly=true)
+    public List<Transaction> findByIdInmueble(Integer id) throws Exception {  
+    	log.debug("getting Usuario instance");
+    	return transactionRepository.findByIdInmueble(id);
+	}
 }

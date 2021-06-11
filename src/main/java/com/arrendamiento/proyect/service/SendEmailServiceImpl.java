@@ -18,12 +18,11 @@ public class SendEmailServiceImpl {
 
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-		String mensaje = "Has creado un nuevo inmueble con id: "
-				+ inmueble.getIdInmueble() + ", con tipo inmueble " + inmueble.getTipoInmueble()
-				+ " Con direccion" + inmueble.getDireccion();
+		String mensaje = "Has creado un nuevo inmueblede de tipo " + inmueble.getTipoInmueble()
+				+ ", Con direccion " + inmueble.getDireccion() + " Y descripcion: "+ inmueble.getDescripcion();
 
 		simpleMailMessage.setTo(receptor);
-		simpleMailMessage.setSubject("Creacion Inmueble #" + inmueble.getIdInmueble());
+		simpleMailMessage.setSubject("Creacion Inmueble:" + inmueble.getTipoInmueble());
 		simpleMailMessage.setText(mensaje);
 
 		javaMailSender.send(simpleMailMessage);
@@ -33,8 +32,10 @@ public class SendEmailServiceImpl {
 
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-		String mensaje = "Has aplicado al inmueble con ID: "
-				+ proceso.getInmueble().getIdInmueble();
+		String mensaje = "Has aplicado al inmueble de tipo "
+				+ proceso.getInmueble().getTipoInmueble() + ", con direccion " 
+				+ proceso.getInmueble().getDireccion() + " y descripcion; "
+				+ proceso.getInmueble().getDescripcion();
 
 		simpleMailMessage.setTo(receptor);
 		simpleMailMessage.setText(mensaje);
@@ -46,8 +47,8 @@ public class SendEmailServiceImpl {
 
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-		String mensaje = "Han aplicado a tu inmueble con ID: "
-				+ proceso.getInmueble().getTipoInmueble() + ", " + proceso.getInmueble().getDireccion() + proceso.getInmueble().getDescripcion() + ", Y el cliente es: " + 
+		String mensaje = "Han aplicado a tu inmueble: " + proceso.getInmueble().getDireccion() + ", " 
+		+ proceso.getInmueble().getDescripcion() + ", Y el cliente es: " + 
 				proceso.getCliente().getNombreCliente();
 
 		simpleMailMessage.setTo(receptor);

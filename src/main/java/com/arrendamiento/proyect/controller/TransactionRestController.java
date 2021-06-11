@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 /**
@@ -48,6 +50,25 @@ public class TransactionRestController {
 
 		return ResponseEntity.ok().body(transactionMapper.transactionToTransactionDTO(transaction));
 	}
+	
+	@GetMapping(value = "/findByIdInmueble/{id}")
+    public ResponseEntity<?> findByIdInmueble(
+        @PathVariable("id")
+        Integer id) {
+        log.debug("Request to findById() Usuario");
+
+        try {
+            List<Transaction> transaction = transactionService.findByIdInmueble(id);
+
+            return ResponseEntity.ok()
+                                 .body(transactionMapper.listTransactionToListTransactionDTO(
+                                		 transaction));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 	@GetMapping(value = "/findAll")
 	public ResponseEntity<?> findAll() throws Exception {
