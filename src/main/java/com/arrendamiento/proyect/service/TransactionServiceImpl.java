@@ -42,6 +42,9 @@ public class TransactionServiceImpl implements TransactionService {
     private TransactionRepository transactionRepository;
     @Autowired
     private Validator validator;
+    @Autowired 	
+	SendEmailServiceImpl sendEmailServiceImpl;
+
 
     @Override
     public void validate(Transaction transaction)
@@ -71,7 +74,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Transaction save(Transaction entity) throws Exception {
         log.debug("saving Transaction instance");
-
+        String correoArrendatario;
         if (entity == null) {
             throw new ZMessManager().new NullEntityExcepcion("Transaction");
         }
@@ -81,8 +84,18 @@ public class TransactionServiceImpl implements TransactionService {
         if (transactionRepository.existsById(entity.getIdTransaction())) {
             throw new ZMessManager(ZMessManager.ENTITY_WITHSAMEKEY);
         }
+        
+        Date date = new Date();
+        entity.setFecha(date);
+        System.out.println(entity.getFecha());
 
-        return transactionRepository.save(entity);
+        Transaction transaction = transactionRepository.save(entity);
+        
+        correoArrendatario = transaction.getInmueble().getCliente().getUsuario().getCorreoElectronico();
+        
+        sendEmailServiceImpl.notificationPagoCannon(correoArrendatario, transaction);
+        
+        return entity;
     }
 
     @Override

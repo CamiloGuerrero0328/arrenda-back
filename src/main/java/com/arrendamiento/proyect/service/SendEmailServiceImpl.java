@@ -43,6 +43,23 @@ public class SendEmailServiceImpl {
 		javaMailSender.send(simpleMailMessage);
 	}
 	
+	public void notificationPagoCannon(String receptor, Transaction transaction) {
+		
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+
+		String mensaje = "Han pagado el cannon de mes: "
+				+ transaction.getFecha() + ", de inmueble tipo: " 
+				+ transaction.getInmueble().getTipoInmueble() + " y direccion; "
+				+ transaction.getInmueble().getDireccion() + " Y cliente: "
+				+ transaction.getCliente().getNombreCliente()+ " " 
+				+ transaction.getCliente().getApellidoCliente();
+		
+		simpleMailMessage.setTo(receptor);
+		simpleMailMessage.setText(mensaje);
+
+		javaMailSender.send(simpleMailMessage);
+	}
+	
 	public void notificationAvisoInmuebleArrendador(String receptor, Proceso proceso) {
 
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
